@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Little Reminder For My Favorite Person ✨</title>
+  <style>
+    :root {
+      --primary: #ff6b8b;
+      --primary-light: #ffd3b6;
+      --bg: #fff5f7;
+      --card-bg: #ffffff;
+      --text: #4a4a4a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffeef2 0%, #fff6e5 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .container {
+      max-width: 650px;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 2.3rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #777;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255, 107, 139, 0.15);
+      margin-bottom: 1.5rem;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    .interactive-btn-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #ff6b8b, #ff8e53);
+      color: white;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 107, 139, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 107, 139, 0.6);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-no {
+      background: #f0f0f0;
+      color: #777;
+      border: 1px solid #ddd;
+      box-shadow: none;
+    }
+
+    .btn-no:hover {
+      background: #e4e4e4;
+      box-shadow: none;
+      color: #555;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      box-shadow: none;
+      margin-top: 0.5rem;
+    }
+
+    .btn-secondary:hover {
+      background: #ffeef2;
+      box-shadow: none;
+    }
+
+    .quote-box {
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #333;
+      margin: 1rem 0;
+      line-height: 1.5;
+    }
+
+    .happy-response {
+      margin-top: 1.5rem;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Animated CSS Cat Avatar */
+    .cat-avatar {
+      font-size: 5rem;
+      display: inline-block;
+      animation: bounceCat 0.6s infinite alternate ease-in-out;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes bounceCat {
+      0% { transform: translateY(0) rotate(-4deg); }
+      100% { transform: translateY(-15px) rotate(4deg); }
+    }
+
+    .happy-response p {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .coupons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .coupon {
+      border: 2px dashed #ffb3c6;
+      border-radius: 12px;
+      padding: 1rem 0.5rem;
+      background: #fffafa;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ff5277;
+    }
+
+    /* Floating Heart Particles */
+    .heart-particle {
+      position: fixed;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 4s linear forwards;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Hey Beautiful 🌸</h1>
+      <p>Just a quick reminder of how special and loved you are.</p>
+    </header>
+
+    <!-- "Are u happy?" Section -->
+    <div class="card">
+      <h2 style="color: #ff5277; font-size: 1.8rem;">Are u happy? 🥺</h2>
+      
+      <div class="interactive-btn-group" id="btn-group">
+        <button class="btn" id="btn-yes" onclick="handleYesClick()">Yes! 🥰</button>
+        <button class="btn btn-no" id="btn-no" onclick="handleNoClick()">No</button>
+      </div>
+
+      <!-- Animated Cat & Celebration Output -->
+      <div id="happy-output" class="happy-response" style="display: none;">
+        <div class="cat-avatar">🐱🎉💃</div>
+        <p>yeeyy! my wify is happy 🎉💖</p>
+      </div>
+    </div>
+
+    <!-- Interactive Compliment Box -->
+    <div class="card">
+      <h3>💌 A Thought For You</h3>
+      <div class="quote-box" id="quote-display">
+        "Whatever is on your mind right now, remember that you’ve got this and I’ve got you."
+      </div>
+      <button class="btn" onclick="nextQuote()">Tap for another smile ✨</button>
+    </div>
+
+    <!-- Virtual Hug Section -->
+    <div class="card">
+      <h3>Need an instant hug? 🤗</h3>
+      <p style="margin: 0.8rem 0; color: #666;">Press the button for infinite warm hugs and love.</p>
+      <button class="btn btn-secondary" onclick="sendHug()">Send Virtual Hug ❤️</button>
+      <div id="hug-count" style="margin-top: 0.8rem; font-size: 0.9rem; color: #888;"></div>
+    </div>
+
+    <!-- Redeemable Coupons -->
+    <div class="card">
+      <h3>🎟️ Emergency Comfort Vouchers</h3>
+      <p style="font-size: 0.9rem; color: #777; margin-top: 0.3rem;">Redeemable at any time, with zero expiration date:</p>
+      <div class="coupons-grid">
+        <div class="coupon">💆‍♀️ 15-Min Massage</div>
+        <div class="coupon">🍫 Favorite Snack Run Together</div>
+        <div class="coupon">🎬 Movie & Cuddles Night</div>
+        <div class="coupon">👂 All-Ears Venting Session</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+    const secretPass = "kavyaa"; // Change this to your password
+    let entered = prompt("Enter the secret password to open your surprise ❤️:");
+    
+    while (entered !== secretPass) {
+      if (entered === null) {
+        // User pressed cancel
+        document.body.innerHTML = "<h2 style='text-align:center;margin-top:20%;font-family:sans-serif;'>Access Denied 🔒</h2>";
+        throw new Error("Access Denied");
+      }
+      entered = prompt("Oops! Wrong password. Try again baby 💕:");
+    }
+  })();
+let noClickCount = 0;
+
+    function handleYesClick() {
+      const output = document.getElementById('happy-output');
+      output.style.display = 'block';
+      
+      const yesBtn = document.getElementById('btn-yes');
+      yesBtn.style.transform = 'scale(1.1)';
+      
+      // Floating hearts burst
+      createFloatingHearts(25);
+    }
+
+    function handleNoClick() {
+      noClickCount++;
+      const noBtn = document.getElementById('btn-no');
+
+      if (noClickCount === 1) {
+        noBtn.textContent = "Are u sure? 🥺";
+      } else if (noClickCount === 2) {
+        noBtn.textContent = "Say yes if u love me ❤️";
+      } else if (noClickCount === 3) {
+        noBtn.textContent = "I know that u r happy, now press 'yess' 😉";
+        noBtn.style.background = '#ffe3ea';
+        noBtn.style.color = '#ff5277';
+      } else {
+        handleYesClick();
+      }
+    }
+
+    // --- Quotes & Hug Logic ---
+    const quotes = [
+      "Your smile literally brightens up my whole world. ☀️",
+      "You are stronger, smarter, and more capable than you give yourself credit for. 💪",
+      "Take a deep breath. Today is just one page in your story. 📖",
+      "Thank you for being my favorite person in the whole universe. 🪐",
+      "Whatever made you feel down today doesn’t stand a chance against your light. ✨",
+      "I believe in you, always and without question. ❤️",
+      "Don't forget: you're doing amazing, even when it doesn't feel like it. 🌸"
+    ];
+
+    let hugCounter = 0;
+
+    function nextQuote() {
+      const display = document.getElementById('quote-display');
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      display.style.opacity = '0';
+      setTimeout(() => {
+        display.textContent = `"${randomQuote}"`;
+        display.style.opacity = '1';
+      }, 150);
+      createFloatingHearts(3);
+    }
+
+    function sendHug() {
+      hugCounter++;
+      const text = document.getElementById('hug-count');
+      text.textContent = `Hugs delivered today: ${hugCounter} 🫂`;
+      createFloatingHearts(12);
+    }
+
+    function createFloatingHearts(count) {
+      const icons = ['❤️', '💖', '✨', '🌸', '🥰', '💕'];
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-particle';
+        heart.textContent = icons[Math.floor(Math.random() * icons.length)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (2.5 + Math.random() * 2) + 's';
+        heart.style.fontSize = (18 + Math.random() * 20) + 'px';
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 4000);
+      }
+    }
+
+    setInterval(() => {
+      createFloatingHearts(1);
+    }, 2500);
+  </script>
+</body>
+</html>
